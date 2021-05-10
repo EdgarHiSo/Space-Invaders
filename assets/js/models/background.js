@@ -12,7 +12,7 @@ class Background {
       this.vx = -1
   
       this.img = new Image()
-      this.img.src = 'assets/img/galaxia.jpeg'
+      this.img.src = 'assets/img/galaxias/jdjd.jpeg'
       
     }
   

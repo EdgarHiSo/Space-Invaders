@@ -2,11 +2,11 @@ class Game {
     constructor(canvasId) {
         this.intervalId = null
 
-        const canvas = document.getElementById(canvasId)
-        this.ctx = canvas.getContext('2d')
+        this.canvas = document.getElementById(canvasId)
+        this.ctx = this.canvas.getContext('2d')
 
-        canvas.width = 750
-        canvas.height = 600
+        this.canvas.width = 750
+        this.canvas.height = 600
         this.background = new Background(this.ctx)
         this.spaceShip = new SpaceShip(this.ctx)
         this.invasores = []
@@ -15,11 +15,11 @@ class Game {
         this.lifes = []
         this.moveCount = 0
         this.difficulty = {
-            bulletVelocity: 10,
-            moveRate: 75
+            bulletVelocity: 5,
+            invasorMoveRate: 75
         }
         this.board = {
-            rows: 3,
+            rows: 2,
             cols: 9
         }
 
@@ -53,9 +53,10 @@ class Game {
     move() {
         this.background.move()
         this.spaceShip.move()
-        if (this.moveCount++ === this.difficulty.moveRate) {
-            this.invasores[Math.floor(Math.random()* this.invasores.length)].weaponInvasor.shoot(this.difficulty.bulletVelocity)
-            this.invasores.forEach(invasor =>  invasor.move())
+        this.moveCount = (this.moveCount + 1) % this.difficulty.invasorMoveRate
+        if (this.moveCount === 0) {
+            this.invasores[Math.floor(Math.random() * this.invasores.length)].weaponInvasor.shoot(this.difficulty.bulletVelocity)
+            this.invasores.forEach(invasor => invasor.move())
             let speedChange = this.invasores.some(inv => inv.x + inv.w > this.ctx.canvas.width - 50 || inv.x < 50)
             if (speedChange) {
                 this.invasores.forEach(invasor =>  {
@@ -63,16 +64,21 @@ class Game {
                     invasor.vx *= -1
                 })
             }
-            this.moveCount = 0
         }
     }
 
     checkIfNoInvasors() {
         if (this.invasores.length === 0) {
+            this.clearBullet()
+            this.increaseDifficulty()
             this.addInvasors()
-            this.difficulty.moveRate -= 10
-            this.difficulty.bulletVelocity += 3
         }
+    }
+
+    increaseDifficulty() {
+        this.board.rows++
+        this.difficulty.invasorMoveRate -= 10
+        this.difficulty.bulletVelocity += 2
     }
 
     stop() {
@@ -97,7 +103,7 @@ class Game {
         for( let row = 0; row < this.board.rows; row++) {
             for (let col = 0; col < this.board.cols; col++) {
                 const invasor = new Invasor(this.ctx, col * 65 + 93, row * 65 + 40)
-                this.invasores.push(invasor) // x EXISTE
+                this.invasores.push(invasor)
             }
         }
     }
@@ -105,7 +111,6 @@ class Game {
         this.lifes.pop()
         if (this.lifes.length === 0) {
             this.gameOver()
-            
         }
     }
 
@@ -140,6 +145,11 @@ class Game {
                 }
             }
         }      
+        for (let invasor of this.invasores) {
+            if (this.spaceShip.collide(invasor)) {
+                this.gameOver()
+            }
+        }
         
     }
     updateScore() {
@@ -147,16 +157,23 @@ class Game {
       }
 
     gameOver() {
+
         clearInterval(this.intervalId)
     
-        this.ctx.font = "40px Comic Sans MS";
-        this.ctx.textAlign = "center";
+        this.ctx.beginPath()
+        this.ctx.font = "40px Arial"
+        this.ctx.textAlign = "center"
+        this.ctx.fillStyle = "red"
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        console.log(this.ctx)
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.fillText(
           "GAME OVER",
-          this.ctx.canvas.width / 2,
-          this.ctx.canvas.height / 2,
+          300,
+          300
         );
-        console.log("eyy")
+        this.ctx.closePath()
+        
       }
 
 }

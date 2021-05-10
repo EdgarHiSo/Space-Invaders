@@ -6,7 +6,7 @@ class Invasor {
         this.h = 50
         this.x = x
         this.y = y
-        this.vx = 15
+        this.vx = 10
         this.img = new Image()
         this.img.src = "assets/img/KMA_Space_Oohroo_spaceship_sprite.png"
         this.weaponInvasor = new WeaponInv(this)

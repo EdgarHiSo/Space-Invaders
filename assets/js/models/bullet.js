@@ -9,7 +9,7 @@ class Bullet {
     }
 
     draw() {
-    this.ctx.fillStyle = 'green';
+    this.ctx.fillStyle = 'white';
     this.ctx.fillRect(this.x, this.y, 5, 5)
     }
 
