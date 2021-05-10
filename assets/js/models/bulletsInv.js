@@ -1,11 +1,11 @@
 class BulletInv {
-    constructor(ctx, x, y, w, h) {
+    constructor(ctx, x, y, w, h, vy) {
       this.ctx = ctx
       this.x = x
       this.y = y
       this.w = w
       this.h = h
-      this.vy = 5
+      this.vy = vy
     }
 
     draw() {

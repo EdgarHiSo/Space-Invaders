@@ -4,13 +4,14 @@ class WeaponInv {
       this.bulletsInv = []
     }
 
-    shoot() {
+    shoot(bulletVelocity) {
       const bulletInv = new BulletInv(
         this.shooterInv.ctx,
         this.shooterInv.x + this.shooterInv.w * 0.5,
         this.shooterInv.y + this.shooterInv.h * 0.5,
         5,
-        5
+        5,
+        bulletVelocity
       )
       this.bulletsInv.push(bulletInv)
     }

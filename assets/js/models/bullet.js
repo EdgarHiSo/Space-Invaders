@@ -14,10 +14,14 @@ class Bullet {
     }
 
     move() {
-
       this.y += this.vy
-
     }
+
+    increaseVelocity() {
+      this.vy -= 10
+    }
+
+
     isVisible() {
       return (
         this.x < this.ctx.canvas.width &&
@@ -26,5 +30,6 @@ class Bullet {
         this.y < this.ctx.canvas.height
       )
     }
+
 }
 //fillRect(x, y, width, height)

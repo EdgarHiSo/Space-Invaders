@@ -42,7 +42,6 @@ class Invasor {
 
     move(direction) {
         this.x += this.vx
-        
     }
     
 
