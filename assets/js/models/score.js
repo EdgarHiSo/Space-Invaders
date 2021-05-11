@@ -7,7 +7,7 @@ class Score {
     }
     //Press Start 2P
     draw() {
-        this.ctx.font = "30px Arial"
+        this.ctx.font = "30px VT323"
         this.ctx.fillText(`Score: ${this.value}!`, this.x, this.y)
     }
     calculateScore() {

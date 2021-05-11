@@ -2,18 +2,24 @@ class Weapon {
     constructor(shooter) {
       this.shooter = shooter;
       this.bullets = []
+      this.canShoot = true
     }
 
     shoot() {
-      const bullet = new Bullet(
-        this.shooter.ctx,
-        this.shooter.x + this.shooter.w * 0.5,
-        this.shooter.y + this.shooter.h * 0.5,
-        5,
-        5
-      )
-
-      this.bullets.push(bullet)
+      if (this.canShoot){
+        this.canShoot = false
+        const bullet = new Bullet(
+          this.shooter.ctx,
+          this.shooter.x + this.shooter.w * 0.5,
+          this.shooter.y + this.shooter.h * 0.5,
+          5,
+          5
+        )
+        this.bullets.push(bullet)
+        setTimeout(() => {
+          this.canShoot = true
+        }, 200)
+      }
     }
 
 

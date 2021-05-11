@@ -183,7 +183,7 @@ class Game {
         clearInterval(this.intervalId)
          const gameDiv = document.querySelector('.game-over')
          gameDiv.style.visibility = "visible"
-         gameDiv.textContent = `Perdiste MamaHuevo ${this.score.value}`
+         gameDiv.textContent = `GAME OVER ${this.score.value}`
         }
 
 
