@@ -22,7 +22,6 @@ class Game {
             rows: 2,
             cols: 9
         }
-
    }
 
     start() {
@@ -33,6 +32,7 @@ class Game {
             this.move()
             this.checkCollisions()
             this.checkIfNoInvasors()
+
             this.draw()
         }, 1000 / 60)
 
@@ -69,21 +69,21 @@ class Game {
 
     checkIfNoInvasors() {
         if (this.invasores.length === 0) {
-            this.clearBullet()
+            this.clearBullets()
             this.increaseDifficulty()
             this.addInvasors()
         }
     }
 
     increaseDifficulty() {
-        this.board.rows++
+        if (this.board.rows < 4) {
+            this.board.rows++
+        }
         this.difficulty.invasorMoveRate -= 10
         this.difficulty.bulletVelocity += 2
+        this.background.changeBackground()
     }
 
-    stop() {
-
-    }
 
     onKeyEvent(event) {
         this.spaceShip.onKeyEvent(event)
@@ -107,6 +107,7 @@ class Game {
             }
         }
     }
+    
     clearLife(life) {
         this.lifes.pop()
         if (this.lifes.length === 0) {
@@ -120,6 +121,10 @@ class Game {
 
     clearBullet(bullet) {
         this.spaceShip.weapon.bullets = this.spaceShip.weapon.bullets.filter(bull => bull !== bullet)
+    }
+
+    clearBullets() {
+        this.spaceShip.weapon.bullets = []
     }
 
     clearInvasor(invasor) {
@@ -156,24 +161,16 @@ class Game {
         this.score.value += 20
       }
 
-    gameOver() {
-
+      gameOver() {
         clearInterval(this.intervalId)
     
-        this.ctx.beginPath()
-        this.ctx.font = "40px Arial"
-        this.ctx.textAlign = "center"
-        this.ctx.fillStyle = "red"
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        console.log(this.ctx)
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.font = "40px Comic Sans MS";
+        this.ctx.textAlign = "center";
         this.ctx.fillText(
           "GAME OVER",
-          300,
-          300
+          this.ctx.canvas.width / 2,
+          this.ctx.canvas.height / 2
         );
-        this.ctx.closePath()
-        
       }
 
 }

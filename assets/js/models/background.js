@@ -10,13 +10,16 @@ class Background {
       this.w = this.ctx.canvas.width
   
       this.vx = -1
-  
-      this.img = new Image()
-      this.img.src = 'assets/img/galaxias/jdjd.jpeg'
       
+      this.backgrounds = ['assets/img/galaxias/jdjd.jpeg','assets/img/galaxias/background.jpeg', 'assets/img/galaxias/galxxi.jpeg']
+      this.img = new Image()
+      this.imgPosition = 0
+      this.img.src = this.backgrounds[this.imgPosition]
     }
   
-    onKeyEvent(event) {
+    changeBackground() {
+      this.imgPosition = (this.imgPosition + 1) % 3
+      this.img.src = this.backgrounds[this.imgPosition]
     }
   
     draw() {
@@ -28,13 +31,13 @@ class Background {
         this.h
       )
   
-      this.ctx.drawImage(
+    this.ctx.drawImage(
         this.img,
         this.x + this.w,
         this.y,
         this.w,
         this.h
-      )
+    )
     }
   
     move() {

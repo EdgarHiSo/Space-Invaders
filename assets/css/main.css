@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
     padding: 0;
     text-align: center;
+    background: url("../img/12.jpeg") center / cover no-repeat fixed;
+    font-family: 'Press Start 2P', cursive;
   }
   
   .game-intro {
@@ -22,21 +26,36 @@ body {
   }
   
   body button {
-    font-size: 30px;
-    background-color: #139b13;
+    font-size: 20px;
+    background-color: #9b135c;
     color: #fff;
     padding: 20px 40px;
     border: 0;
     box-shadow: 0;
     border-radius: 5px;
     margin-bottom: 20px;
+    font-family: 'Press Start 2P', cursive;
+
   }
   
   #game-board {
-      float: left;
       padding: 20px 0px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+  }
+  #game-board img {
+    height: 250px;
+
   }
   #canvas {
       overflow: hidden;
       border: 1px dotted;
+      
   }
+  #game-board div {
+    width: 750px;
+    display: flex;
+    justify-content: space-evenly;
+}

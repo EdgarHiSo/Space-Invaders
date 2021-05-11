@@ -6,16 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space-Invaders</title>
     <link rel="stylesheet" href="./assets/css/main.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+      </style>
 </head>
 <body>
     <div class="game-intro">
-        <img src="./assets/img/fondo.png" alt="" class="logo-img" />
-        <br />
-        <button id="start-button">Come to the War</button>
+       <!--  <img src="./assets/img/fondo.png" alt="" class="logo-img" />
+        <br /> -->
+        
       </div>
   
       <div id="game-board">
+        <img src="./assets/img/header-removebg-preview.png" alt="">
         <canvas id="canvas" width="750" height="600"></canvas>
+        <div>
+          <button class="buttons" id="start-button">Start</button>
+          <button class="buttons" id="pause-button">Pause</button>
+          <button class="buttons" id="try-again-button">Try Again</button>
+        </div>
       </div>
       <script src="./assets/js/models/naveLifes.js"></script>
       <script src="./assets/js/models/score.js"></script>
