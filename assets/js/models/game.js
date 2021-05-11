@@ -1,6 +1,7 @@
 class Game {
     constructor(canvasId) {
         this.intervalId = null
+        this.gamePaused = false
 
         this.canvas = document.getElementById(canvasId)
         this.ctx = this.canvas.getContext('2d')
@@ -41,6 +42,23 @@ class Game {
     clear() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     }
+    
+     pauseGame() {
+        if (!this.gamePaused) {
+          this.intervalId = clearTimeout(this.intervalId);
+          this.gamePaused = true;
+        } else {
+            this.intervalId = setInterval(() => {
+                this.clear()
+                this.move()
+                this.checkCollisions()
+                this.checkIfNoInvasors()
+                this.draw()
+            }, 1000 / 60)
+    
+          this.gamePaused = false;
+        }
+      }
 
     draw() {
          this.background.draw()
@@ -163,25 +181,13 @@ class Game {
 
       gameOver() {
         clearInterval(this.intervalId)
+         const gameDiv = document.querySelector('.game-over')
+         gameDiv.style.visibility = "visible"
+         gameDiv.textContent = `Perdiste MamaHuevo ${this.score.value}`
+        }
+
+
+
     
-        this.ctx.font = "40px Comic Sans MS";
-        this.ctx.textAlign = "center";
-        this.ctx.fillText(
-          "GAME OVER",
-          this.ctx.canvas.width / 2,
-          this.ctx.canvas.height / 2
-        );
-      }
 
 }
-
-
-        
-
-  /*   Un marcador con la puntuación, otro marcador con la puntuación más alta
-    Una barra de vida, que reste el 33% de la vida
-    Incrementar la dificultad/ menos timpo
-
-    La opción de parar el juego con un STOP!!
-
- */

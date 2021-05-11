@@ -5,8 +5,9 @@ class Score {
         this.y = 575
         this.value = 0
     }
+    //Press Start 2P
     draw() {
-        this.ctx.font = "30px Press Start 2P"
+        this.ctx.font = "30px Arial"
         this.ctx.fillText(`Score: ${this.value}!`, this.x, this.y)
     }
     calculateScore() {
