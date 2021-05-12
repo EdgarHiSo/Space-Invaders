@@ -1,5 +1,5 @@
 class Life {
-      constructor(ctx, x, y) {
+    constructor(ctx, x, y) {
         this.ctx = ctx
         this.isVisible = true
         this.x = x
@@ -9,8 +9,8 @@ class Life {
         this.w = 30
         this.h = 30
 
-        this.vx = 0,5
-        
+        this.vx = 0, 5
+
 
 
         this.img = new Image()

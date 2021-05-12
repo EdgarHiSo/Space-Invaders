@@ -16,15 +16,14 @@ window.addEventListener('load', () => {
         }
     }
     tryButton.onclick = () => {
-      game.reset()
+        game.reset()
     }
 
-    
+
 
     document.addEventListener("keydown", event => {
         console.log(event)
         if (event.key == 'x') {
-
             game.pauseGame()
         }
     })

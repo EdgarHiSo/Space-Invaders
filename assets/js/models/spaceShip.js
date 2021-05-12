@@ -63,7 +63,7 @@ class SpaceShip {
                 case KEY_LEFT:
                     if (this.x >= 0) {
                         this.vx = -5
-                        
+
                     } else {
                         this.x = this.ctx.canvas.width - this.w
                         this.vx = 0

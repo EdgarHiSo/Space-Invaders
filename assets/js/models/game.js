@@ -186,12 +186,14 @@ class Game {
         clearInterval(this.intervalId)
         const gameDiv = document.querySelector('.game-over')
         gameDiv.style.visibility = "visible"
-        
+
         gameDiv.textContent = `GAME OVER ${this.score.value}`
     }
 
     reset() {
         clearInterval(this.intervalId)
+        const gameDiv = document.querySelector('.game-over')
+        gameDiv.style.visibility = "hidden"
         this.spaceShip = new SpaceShip(this.ctx)
         this.invasores = []
         this.direction = 1
@@ -207,9 +209,4 @@ class Game {
         }
         this.start()
     }
-
-
-
-
-
 }
