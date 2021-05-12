@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    const game = new Game("canvas")
+    let game = new Game("canvas")
 
     const startButton = document.getElementById('start-button')
     const pauseButton = document.getElementById('pause-button')
@@ -7,24 +7,24 @@ window.addEventListener('load', () => {
     let start = false
 
     startButton.onclick = () => {
-        if(!game.intervalId) {
+        if (!game.intervalId) {
             game.start()
             startButton.style.visibility = "hidden"
             start = !start
             pauseButton.style.visibility = "visible"
             tryButton.style.visibility = "visible"
-
         }
     }
-    pauseButton.onclick = () => {
-
+    tryButton.onclick = () => {
+      game.reset()
     }
 
+    
 
     document.addEventListener("keydown", event => {
         console.log(event)
         if (event.key == 'x') {
-        
+
             game.pauseGame()
         }
     })

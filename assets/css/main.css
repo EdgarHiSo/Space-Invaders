@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 /* @font-face {
   font-family: 'VT323';
@@ -6,64 +6,61 @@
 } */
 
 body {
-    padding: 0;
-    text-align: center;
-    background: url("../img/12.jpeg") center / cover no-repeat fixed;
-    font-family: 'VT323', cursive;
-  }
-  
-  .game-intro {
-    float: left;
-    padding: 0% 10%;
-  }
-  
-  .game-intro p {
-    font-size: 18px;
-    font-family: "Verdana"
-  }
-  
-  .logo-img {
-    width: 350px;
-  }
-  
-  .arrows-img {
-    width: 150px;
-  }
-  
-  body button {
-    font-size: 20px;
-    background-color: #9b135c;
-    color: #fff;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-family: 'VT323', cursive;
+  padding: 0;
+  text-align: center;
+  background: url("../img/12.jpeg") center / cover no-repeat fixed;
+  font-family: "VT323", cursive;
+}
 
-  }
-  
-  #game-board {
-      padding: 20px 0px;
-      display: flex;
-      position: relative;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-  }
-  #game-board img {
-    height: 250px;
+.game-intro {
+  float: left;
+  padding: 0% 10%;
+}
 
-  }
-  #canvas {
-      overflow: hidden;
-      border: 1px dotted;
-      
-  }
-  #game-board div {
-    width: 750px;
-    display: flex;
-    justify-content: space-evenly;
+.game-intro p {
+  font-size: 18px;
+  font-family: "Verdana";
+}
+
+.logo-img {
+  width: 350px;
+}
+
+.arrows-img {
+  width: 150px;
+}
+
+body button {
+  font-size: 20px;
+  background-color: #9b135c;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: "VT323", cursive;
+}
+
+#game-board {
+  padding: 20px 0px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+#game-board img {
+  height: 250px;
+}
+#canvas {
+  overflow: hidden;
+  border: 1px dotted;
+}
+#game-board div {
+  width: 750px;
+  display: flex;
+  justify-content: space-evenly;
 }
 .game-over {
   position: absolute;

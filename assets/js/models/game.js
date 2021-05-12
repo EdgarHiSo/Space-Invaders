@@ -23,7 +23,7 @@ class Game {
             rows: 2,
             cols: 9
         }
-   }
+    }
 
     start() {
         this.addInvasors()
@@ -42,11 +42,11 @@ class Game {
     clear() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     }
-    
-     pauseGame() {
+
+    pauseGame() {
         if (!this.gamePaused) {
-          this.intervalId = clearTimeout(this.intervalId);
-          this.gamePaused = true;
+            this.intervalId = clearTimeout(this.intervalId);
+            this.gamePaused = true;
         } else {
             this.intervalId = setInterval(() => {
                 this.clear()
@@ -55,17 +55,20 @@ class Game {
                 this.checkIfNoInvasors()
                 this.draw()
             }, 1000 / 60)
-    
-          this.gamePaused = false;
+
+            this.gamePaused = false;
         }
-      }
+        this.ctx.fillStyle = "yellow";
+        this.ctx.font = "40px VT323"
+        this.ctx.fillText(`PAUSE`, this.canvas.width / 2, this.canvas.height / 2)
+    }
 
     draw() {
-         this.background.draw()
-         this.spaceShip.draw()
-         this.invasores.forEach(i => i.draw())
-         this.lifes.forEach(l => l.draw())
-         this.score.draw()
+        this.background.draw()
+        this.spaceShip.draw()
+        this.invasores.forEach(i => i.draw())
+        this.lifes.forEach(l => l.draw())
+        this.score.draw()
     }
 
     move() {
@@ -77,7 +80,7 @@ class Game {
             this.invasores.forEach(invasor => invasor.move())
             let speedChange = this.invasores.some(inv => inv.x + inv.w > this.ctx.canvas.width - 50 || inv.x < 50)
             if (speedChange) {
-                this.invasores.forEach(invasor =>  {
+                this.invasores.forEach(invasor => {
                     invasor.y += 20
                     invasor.vx *= -1
                 })
@@ -108,7 +111,7 @@ class Game {
     }
 
     addLifes() {
-        for( let row = 0; row < 1; row++) {
+        for (let row = 0; row < 1; row++) {
             for (let col = 0; col < 3; col++) {
                 const life = new Life(this.ctx, col * 25 + 625, row * 25 + 550)
                 this.lifes.push(life)
@@ -118,14 +121,14 @@ class Game {
 
 
     addInvasors() {
-        for( let row = 0; row < this.board.rows; row++) {
+        for (let row = 0; row < this.board.rows; row++) {
             for (let col = 0; col < this.board.cols; col++) {
                 const invasor = new Invasor(this.ctx, col * 65 + 93, row * 65 + 40)
                 this.invasores.push(invasor)
             }
         }
     }
-    
+
     clearLife(life) {
         this.lifes.pop()
         if (this.lifes.length === 0) {
@@ -167,27 +170,46 @@ class Game {
                     this.clearBulletInv(invasor, bullet)
                 }
             }
-        }      
+        }
         for (let invasor of this.invasores) {
             if (this.spaceShip.collide(invasor)) {
                 this.gameOver()
             }
         }
-        
+
     }
     updateScore() {
         this.score.value += 20
-      }
+    }
 
-      gameOver() {
+    gameOver() {
         clearInterval(this.intervalId)
-         const gameDiv = document.querySelector('.game-over')
-         gameDiv.style.visibility = "visible"
-         gameDiv.textContent = `GAME OVER ${this.score.value}`
+        const gameDiv = document.querySelector('.game-over')
+        gameDiv.style.visibility = "visible"
+        
+        gameDiv.textContent = `GAME OVER ${this.score.value}`
+    }
+
+    reset() {
+        clearInterval(this.intervalId)
+        this.spaceShip = new SpaceShip(this.ctx)
+        this.invasores = []
+        this.direction = 1
+        this.score = new Score(this.ctx)
+        this.lifes = []
+        this.difficulty = {
+            bulletVelocity: 5,
+            invasorMoveRate: 75
         }
+        this.board = {
+            rows: 2,
+            cols: 9
+        }
+        this.start()
+    }
 
 
 
-    
+
 
 }
